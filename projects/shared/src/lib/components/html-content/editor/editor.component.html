@@ -1,0 +1,21 @@
+<div class="editor-wrapper">
+  <h2>Quill Editor with Save and Preview</h2>
+  <quill-editor 
+    [(ngModel)]="editorContent"
+    [modules]="editorModules"
+    (onEditorCreated)="onEditorCreated($event)"
+    placeholder="Compose something epic...">
+  </quill-editor>
+</div>
+<div class="button-group">
+  <button (click)="saveContent()">Save</button>
+  <button (click)="openPreview()">Preview</button>
+</div>
+
+<!-- Modal Window for Preview -->
+<div *ngIf="showModal" class="modal" (click)="closeModal()">
+  <div class="modal-content">
+    <h3>Preview</h3>
+    <div [innerHTML]="editorContent"></div>
+  </div>
+</div>

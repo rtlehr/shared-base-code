@@ -1,0 +1,153 @@
+<div [id] = "divId" class="container">
+    <div class="form-container">
+        <h2 class="mb-4">Sample Form Fields</h2>
+        <form>
+
+            @for(formFields of getFormFields; track $index) 
+            {           
+
+                @if(formFields.type == "textInput")
+                {
+
+                    <!-- Text Input -->
+                    <div class="mb-3">
+                        <label [for] = "formFields.fieldId" class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</label>
+                        <input type="text" class="form-control" [id] = "formFields.fieldId" [placeholder]="formFields.placeholderText" [required]="formFields.required">
+                    </div>
+
+                }
+
+                @if(formFields.type == "emailInput")
+                {
+
+                    <!-- Email Input -->
+                    <div class="mb-3"> 
+                        <label [for] = "formFields.fieldId" class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</label>
+                        <input type="email" class="form-control" [id] = "formFields.fieldId" [placeholder]="formFields.placeholderText" [required]="formFields.required">
+                    </div>
+
+                }
+
+                @if(formFields.type == "passwordInput")
+                {
+
+                    <!-- Password Input -->
+                    <div class="mb-3">
+                        <label [for] = "formFields.fieldId" class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</label>
+                        <input type="password" class="form-control" [id] = "formFields.fieldId" [placeholder]="formFields.placeholderText" [required]="formFields.required">
+                    </div>
+
+                }
+
+                @if(formFields.type == "numberInput")
+                {
+
+                    <!-- Number Input -->
+                    <div class="mb-3">
+                        <label [for] = "formFields.fieldId" class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</label>
+                        <input type="number" class="form-control" [id] = "formFields.fieldId" [placeholder]="formFields.placeholderText" [required]="formFields.required">
+                    </div>
+
+                }
+
+                @if(formFields.type == "dateInput")
+                {
+
+                    <!-- Date Input -->
+                    <div class="mb-3">
+                        <label [for] = "formFields.fieldId" class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</label>
+                        <input type="date" class="form-control" [id] = "formFields.fieldId" [required]="formFields.required">
+                    </div>
+                
+                }
+
+                @if(formFields.type == "radioButton")
+                {
+
+                    <!-- Radio Buttons -->
+                    <fieldset class="mb-3">
+                        <legend class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</legend>
+
+                        @for(options of formFields.options ; track $index)
+                        {
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="radioOptions" [id]="options.optionId" [name] = "formFields.fieldName"  [required]="$first && formFields.required">
+                                <label class="form-check-label" [for]="options.optionId">{{ options.optionText}}</label>
+                            </div>
+
+                        }
+
+                    </fieldset>
+                
+                }
+
+                @if(formFields.type == "checkbox")
+                {
+
+                    <!-- Checkboxes -->
+                    <fieldset class="mb-3">
+                        <legend class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</legend>
+                        
+
+                        @for(options of formFields.options; track $index)
+                        {
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" [id]="options.optionId" [name] = "formFields.fieldName"  [required]="$first && formFields.required">
+                                <label class="form-check-label" [for]="options.optionId">{{ options.optionText }}</label>
+                            </div>
+
+                        }
+
+                    </fieldset>
+                
+                }
+
+                @if(formFields.type == "dropdown")
+                {
+
+                    <!-- Select Dropdown -->
+                    <div class="mb-3">
+                        <label [for] = "formFields.fieldId" class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</label>
+                        <select class="form-select" [id] = "formFields.fieldId" [required]="formFields.required">
+                            <option selected>Choose an option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                
+                }
+
+                @if(formFields.type == "textarea")
+                {
+
+                    <!-- Textarea -->
+                    <div class="mb-3">
+                        <label [for] = "formFields.fieldId" class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</label>
+                        <textarea class="form-control" [id] = "formFields.fieldId" rows="3" [placeholder]="formFields.placeholderText" [required]="formFields.required"></textarea>
+                    </div>
+                
+                }
+
+                @if(formFields.type == "fileInput")
+                {
+
+                    <!-- File Input -->
+                    <div class="mb-3">
+                        <label [for] = "formFields.fieldId" class="form-label" [ngClass]="{ 'mandatory': formFields.required }">{{ formFields.requestedInfo}}</label>
+                        <input class="form-control" type="file" [id] = "formFields.fieldId" [required]="formFields.required">
+                    </div>
+
+                }
+
+            }
+ 
+            <!-- Submit Button -->
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

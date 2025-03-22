@@ -1,0 +1,127 @@
+<div id="blogDetail" class="container-fluid"> 
+    <div class="row">
+      <!-- Sidebar -->
+      <nav
+        id="sidebarMenu"
+        class="col-md-3 col-lg-2 d-md-block bg-light sidebar offcanvas-md offcanvas-start"
+      >
+        <div class="position-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item" *ngFor="let blog of blogPosts; trackBy: trackByBlogId">
+              <a
+                class="nav-link"
+                [routerLink]="[baseBlogUrl, blog.url]"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="closeSidebar()"
+              >
+                {{ blog.title }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+  
+      <!-- Toggle Button for Sidebar (Visible on small screens) -->
+      <button
+        class="btn btn-primary d-md-none"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+      >
+        ☰ Menu
+      </button>
+  
+      <!-- Content Section -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="content-wrapper">
+          <ng-container *ngIf="blogPost; else loading">
+            <div class="card shadow-sm">
+              <img
+                *ngIf="blogPost.imageUrl"
+                [src]="blogPost.imageUrl"
+                class="card-img-top"
+                [alt]="blogPost.title"
+              />
+              <div class="card-body">
+                <h1 class="card-title">{{ blogPost.title }}</h1>
+                <p class="text-muted">
+                  By {{ blogPost.author }} | {{ blogPost.date | date: 'longDate' }}
+                </p>
+                <div class="mb-3">
+                  <span *ngFor="let tag of blogPost.tags" class="tag badge me-2">
+                    {{ tag }}
+                  </span>
+                </div>
+  
+                <!-- Render dynamic content based on contentType -->
+                <ng-container *ngFor="let pageContent of blogPost.blogText; trackBy: trackByContentId">
+                  <ng-container [ngSwitch]="pageContent.contentType">
+                    <app-html-content
+                      *ngSwitchCase="'contentPage'"
+                      [fileToLoad]="pageContent.contentFile"
+                      [divId]="pageContent.divId"
+                    ></app-html-content>
+                    <app-image-gallery
+                      *ngSwitchCase="'imageGallery'"
+                      [fileToLoad]="pageContent.contentFile"
+                      [divId]="pageContent.divId"
+                    ></app-image-gallery>
+                    <app-news
+                      *ngSwitchCase="'news'"
+                      [fileToLoad]="pageContent.contentFile"
+                      [divId]="pageContent.divId"
+                    ></app-news>
+                    <app-image-display
+                      *ngSwitchCase="'imageDisplay'"
+                      [fileToLoad]="pageContent.contentFile"
+                      [divId]="pageContent.divId"
+                    ></app-image-display>
+                    <app-faq
+                      *ngSwitchCase="'faq'"
+                      [fileToLoad]="pageContent.contentFile"
+                      [divId]="pageContent.divId"
+                    ></app-faq>
+                    <app-form-generator
+                      *ngSwitchCase="'form'"
+                      [fileToLoad]="pageContent.contentFile"
+                      [divId]="pageContent.divId"
+                    ></app-form-generator>
+                    <app-image-slider
+                      *ngSwitchCase="'imageSlider'"
+                      [fileToLoad]="pageContent.contentFile"
+                      [divId]="pageContent.divId"
+                    ></app-image-slider>
+                    <app-content-tabs
+                      *ngSwitchCase="'tabs'"
+                      [fileToLoad]="pageContent.contentFile"
+                      [divId]="pageContent.divId"
+                    ></app-content-tabs>
+                    <app-info-highlight
+                      *ngSwitchCase="'infoHighlight'"
+                      [fileToLoad]="pageContent.contentFile"
+                    ></app-info-highlight>
+                    <app-business-card
+                      *ngSwitchCase="'businesscard'"
+                      [fileToLoad]="pageContent.contentFile"
+                    ></app-business-card>
+                    <ng-container *ngSwitchDefault>
+                      <p>Select a component to display.</p>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+  
+          <ng-template #loading>
+            <div class="container mt-5 text-center">
+              <p>Loading blog post...</p>
+            </div>
+          </ng-template>
+        </div>
+      </main>
+    </div>
+  </div>
+  

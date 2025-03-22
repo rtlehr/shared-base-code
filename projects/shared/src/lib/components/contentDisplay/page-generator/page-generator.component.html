@@ -1,0 +1,11 @@
+<div [id]="divId" class="basePageContent">
+    <ng-container *ngFor="let page of pageContents; let i = index">
+      <div [id]="divId + '-content-' + (i + 1)" class="basePageContentHolder">
+        <app-dynamic-wrapper 
+          [component]="componentMapping[page.contentType]" 
+          [inputs]="{ fileToLoad: page.contentFile, divId: page.divId }">
+        </app-dynamic-wrapper>
+      </div>
+    </ng-container>
+  </div>
+   

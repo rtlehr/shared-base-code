@@ -1,0 +1,25 @@
+<div class="contactInfo">
+
+    @if(!socialOnly)
+    {
+        <div class="physical">
+            @for(contPhysical of getConInfoPhysical; track contPhysical.name) 
+            {
+                <span class="contPhysical"><strong>{{ contPhysical.name }}: </strong>{{ contPhysical.text }}</span>
+            }
+        </div>
+
+    }
+
+    <ul class="social">
+
+    @for(contSocial of getConInfoSocial; track contSocial.name) 
+    {
+        <li>
+            <a href="{{ contSocial.link }}" target="_blank"><i class="{{ contSocial.icon }}"></i></a>
+        </li>
+    }
+
+    </ul>
+
+</div>

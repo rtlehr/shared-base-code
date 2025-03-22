@@ -1,0 +1,26 @@
+.contactInfo {
+    // Optional base styles for contactInfo can be added here if needed
+  
+    .contPhysical {
+      display: block;
+      padding: 0; // shorthand for no padding
+    }
+  
+    .social {
+      list-style: none; // shorthand for list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+  
+      li {
+        display: inline-block;
+        padding: 0 10px; // shorthand for left/right padding
+        cursor: pointer;
+  
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+  

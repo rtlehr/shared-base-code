@@ -1,0 +1,100 @@
+.prompt-builder-container {
+    max-width: 700px;
+    margin: auto;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+  
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+  
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+  
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      box-sizing: border-box;
+    }
+  
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+  
+    button {
+      margin-top: 1.5rem;
+      padding: 0.6rem 1rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+  
+      &:disabled {
+        background-color: #999;
+        cursor: not-allowed;
+      }
+    }
+  
+    .prompt-output {
+      margin-top: 2rem;
+      background-color: #f9f9f9;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #eaeaea;
+  
+      h3 {
+        margin-top: 0;
+      }
+  
+      p {
+        background-color: #fff;
+        border-radius: 4px;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+      }
+  
+      button {
+        margin-top: 0.5rem;
+        background-color: #28a745;
+  
+        &:hover {
+          background-color: #218838;
+        }
+      }
+    }
+  }
+
+  .hint {
+    display: block;
+    color: #666;
+    font-weight: normal;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+  }
+  
+  /* prompt-builder.component.scss */
+textarea {
+  resize: vertical;
+}
+
+.alert {
+  white-space: pre-wrap;
+}
+
+.form-label
+{
+  font-weight: bold;
+}
+
+  

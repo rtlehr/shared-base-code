@@ -1,0 +1,86 @@
+@import "../../../color-scheme.scss";
+
+/* Ensures a consistent layout */
+.container {
+  max-width: 1200px;
+}
+
+/* Grid layout */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Card Styling */
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Image Container - Makes all images the same size */
+.image-container {
+  width: 100%;
+  height: 250px; // Fixed height for uniformity
+  background: #f0f0f0; // Fallback background color
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensures images fit inside the container without stretching */
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; // Ensures all images fill the space uniformly
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Smooth Zoom Effect */
+.card-img:hover {
+  transform: scale(1.05);
+}
+
+/* Card Body */
+.card-body {
+  background-color: $color1;
+  padding: 15px;
+}
+
+/* Card Title */
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Button Styling */
+.btn-primary {
+  background-color: $complement3;
+  border-color: $complement3;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .col-md-4 {
+    width: 100%; // Full width for smaller screens
+  }
+
+  .image-container {
+    height: 200px; // Adjust height for smaller screens
+  }
+}

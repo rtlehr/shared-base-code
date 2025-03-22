@@ -1,0 +1,52 @@
+<div class="container">
+  <h2>Create New HTML Document</h2>
+
+  <form [formGroup]="htmlForm" (ngSubmit)="submitForm()">
+    <!-- Title Field -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Document Title</label>
+      <input type="text" id="title" class="form-control" formControlName="title" placeholder="Enter document title">
+    </div>
+
+    <!-- Permission Level -->
+    <div class="mb-3">
+      <label for="permission" class="form-label">Permission Level</label>
+      <select id="permission" class="form-control" formControlName="permission">
+        <option value="public">Public</option>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+
+    <!-- Quill Editor for Content -->
+    <div class="mb-3 editor-wrapper">
+      <label for="content" class="form-label">Content</label>
+      <br/>
+      <quill-editor
+        id="content"
+        formControlName="content"
+        [modules]="editorModules"
+        placeholder="Compose something epic..."
+        (onEditorCreated)="onEditorCreated($event)">
+      </quill-editor>
+    </div>
+
+    <!-- Button Group -->
+    <div class="button-group">
+      <button type="submit" class="btn btn-primary">Save HTML File</button>
+      <button type="button" class="btn btn-secondary" (click)="openPreview()">Preview</button>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+  </form>
+</div>
+
+<!-- Modal Window for Preview -->
+<div *ngIf="showModal" class="modal" (click)="closeModal()">
+  <div class="modal-content">
+    <h3>Preview</h3>
+    <div [innerHTML]="htmlForm.value.content"></div>
+  </div>
+</div>

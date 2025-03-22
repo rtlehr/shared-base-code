@@ -1,0 +1,80 @@
+<div [id] = "divId" class="blogPage">
+
+  <h1 class="text-center mb-4">Blog Posts</h1>
+
+  <!-- Display error message if there is an error --> 
+  @if (error) {
+    <div class="alert alert-danger text-center"> 
+      {{ error }}
+    </div>
+  }
+
+  <!-- Button to toggle between all and featured posts -->
+  <div class="text-center mb-4">
+    <button class="btn btn-secondary" (click)="toggleFeaturedPosts()">
+      {{ showFeaturedOnly ? 'Show All Posts' : 'Show Featured Posts' }}
+    </button>
+  </div>
+
+  <div class="row blogList"> 
+
+    @for (post of blogPosts; track post.id) {
+
+      <div class="col-md-6 col-lg-4 mb-4">
+
+        <div #blogItem class="card blog-card h-100 shadow pop-in"  
+        [class.visible]="isVisible"
+        [class.featured]="post.isFeatured"
+        >
+
+          <!-- Blog image -->
+          <img
+            [src]="post.imageUrl"
+            class="card-img-top"
+            [alt]="post.title"
+            onerror="this.src='./assets/images/motorcycle.png';"
+          />
+          
+          <div class="card-body">
+            <!-- Featured Badge -->
+            @if (post.isFeatured) {
+              <span class="badge bg-warning text-dark featured-badge">Featured</span>
+            }
+            
+            <!-- Blog title -->
+            <h5 class="card-title text-truncate">{{ post.title }}</h5>
+            
+            <!-- Blog tags -->
+            <div class="tags mb-2">
+                <span *ngFor="let tag of post.tags" class="badge tag me-1"
+                (click)="getTagPosts(tag)">{{ tag }}</span>
+            </div>
+            
+            <!-- Blog preview content -->
+            <p class="card-text text-muted">
+              {{ post.content | slice: 0:100 }}...
+            </p>
+            
+            <!-- Link to blog details -->
+            <button
+              class="btn btn-primary w-100"
+              (click)="navigateToDetails(post.url)"
+            >
+              Read More
+            </button>
+          </div>
+          
+          <!-- Blog footer (Author and date) -->
+          <div class="card-footer text-muted text-center">
+            <small>By {{ post.author }} on {{ post.date }}</small>
+          </div>
+        </div>
+      </div>
+
+    }
+
+  </div> 
+
+</div>
+
+

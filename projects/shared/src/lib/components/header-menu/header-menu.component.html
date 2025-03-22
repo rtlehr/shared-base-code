@@ -1,0 +1,55 @@
+<ul class="navbar-nav ms-auto">
+  @for(headerMenuItem of getHeaderMenuItems; track $index	){
+
+    <ng-container>
+
+      <li class="nav-item" [class.dropdown]="headerMenuItem.children?.length">
+
+        <!-- Parent menu item without children -->
+        @if(!headerMenuItem.children){
+          <a
+            class="nav-link"
+            [routerLink]="headerMenuItem.path"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="closeMenu()">
+            {{ headerMenuItem.title }}
+          </a>
+        }
+
+        <!-- Parent menu item with dropdown -->
+        @if(headerMenuItem.children){
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown-{{ headerMenuItem.id }}"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{ headerMenuItem.title }}
+          </a>
+        }
+        
+        <!-- Dropdown menu -->
+        @if(headerMenuItem.children){
+          <ul class="dropdown-menu" [attr.aria-labelledby]="'navbarDropdown-' + headerMenuItem.id">
+            @for(subItem of headerMenuItem.children; track $index	){
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="[headerMenuItem.path, subItem.path]"
+                  routerLinkActive="active"
+                  (click)="closeMenu()">
+                  {{ subItem.title }}
+                </a>
+              </li>
+            }
+          </ul>
+        }
+
+      </li>
+
+    </ng-container>
+
+  }
+</ul>

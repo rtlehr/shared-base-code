@@ -1,0 +1,99 @@
+<div [id] = "divId" class="container mt-5">
+    <ul class="nav nav-tabs">
+
+    @for(tab of tabsData; track tab.title){ 
+
+      <li class="nav-item">
+        <a 
+          class="nav-link" 
+          [class.active]="$index === activeTabIndex"
+          (click)="setActiveTab($index)">
+          {{ tab.title }}
+        </a>
+      </li>
+
+    }
+ 
+    </ul>
+    
+    @for(tab of tabsData; track tab.title){
+
+        <div class="tab-content">
+          @if($index === activeTabIndex){
+            <div class="tab-pane fade show active">
+              
+
+                @for(count of tab.content; track count.contentType) {
+
+                  @if(tab.content[$index].contentType == "contentPage")
+                  {
+          
+                      <app-html-content [fileToLoad] = "tab.content[$index].contentFile"/>
+          
+                  }
+          
+                  @else if(tab.content[$index].contentType == "imageGallery")
+                  {
+          
+                      <app-image-gallery [fileToLoad] = "tab.content[$index].contentFile" />
+          
+                  }
+          
+                  @else if(tab.content[$index].contentType == "news")
+                  {
+          
+                      <app-news [fileToLoad] = "tab.content[$index].contentFile" />
+          
+                  }
+          
+                  @else if(tab.content[$index].contentType == "imageDisplay")
+                  {
+          
+                      <app-image-display [fileToLoad] = "tab.content[$index].contentFile"/>
+          
+                  }
+          
+                  @else if(tab.content[$index].contentType == "faq")
+                  {
+          
+                      <app-faq [fileToLoad] = "tab.content[$index].contentFile"/>
+          
+                  }
+          
+                  @else if(tab.content[$index].contentType == "form")
+                  {
+          
+                      <app-form-generator [fileToLoad] = "tab.content[$index].contentFile"/>
+          
+                  }
+          
+                  @else if(tab.content[$index].contentType == "imageSlider")
+                  {
+          
+                      <app-image-slider [fileToLoad] = "tab.content[$index].contentFile"/>
+          
+                  }
+          
+                  @else if(tab.content[$index].contentType == "tabs")
+                  {
+                  
+                      <app-content-tabs />
+                  
+                  }
+          
+                  @else
+                  {
+          
+                      <p>Select a component to display.</p> 
+          
+                  }
+              
+          }
+
+            </div>
+          }
+        </div>
+
+    }
+  </div>
+  

@@ -1,0 +1,57 @@
+@import "../../../../color-scheme.scss";
+
+.blog-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+  
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .featured-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 5px 10px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+    
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      cursor: pointer;
+
+    }
+  }
+  
+  .featured {
+    border: 2px solid gold;
+    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.5);
+  }
+
+  .blogPage
+  {
+    padding: 25px;
+  }
+
+  .blogList
+  {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .tag{
+    background-color: $complement3 !important;
+    color: white !important;
+  }
+
+  

@@ -1,0 +1,91 @@
+@import "../../../../color-scheme.scss";
+
+#blogDetail
+{
+  padding: 25px;
+}
+
+.container 
+{
+
+  max-width: 800px; 
+
+}
+
+  .card {
+    border-radius: 15px;
+    overflow: hidden; 
+  }
+  
+  .card-img-top {
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  .badge {
+    font-size: 0.85rem;
+    padding: 0.5em 0.75em;
+  }
+  
+  .text-muted {
+    font-size: 0.9rem;
+  }
+  
+  .card-title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+  
+
+/* Sidebar container */
+.sidebar {
+  background-color: lighten($complement1, 30%); // Bootstrap light background
+  padding: 1rem;
+  border-right: 1px solid lighten($gray-500, 30%); // Lightened gray border
+  min-height: 100vh; // Full-height sidebar
+}
+
+/* Navigation list */
+.sidebar .nav {
+  margin-top: 1rem;
+}
+
+/* Navigation items */
+.sidebar .nav-item {
+  margin-bottom: 0.5rem;
+}
+
+/* Links */
+.sidebar .nav-item .nav-link {
+  color: $bodyTextColor; // Bootstrap body text color
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: $color1; // Light hover background
+    color: $complement3; // Bootstrap primary color
+    text-decoration: none;
+  }
+
+  &.active {
+    background-color: $complement3; // Bootstrap primary color
+    color: $white; // White text for active link
+    font-weight: bold;
+    text-decoration: none; // Prevent underline conflicts
+  }
+}
+
+.tag
+{
+  background-color: $complement3 !important;
+  color: white !important;
+}

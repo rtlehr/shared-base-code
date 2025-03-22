@@ -1,0 +1,36 @@
+<div
+  [id] = "divId" 
+  class="image-slider"
+  [style.max-width]="sliderWidth"
+  [style.height]="sliderHeight"
+  style="margin-left: auto; margin-right: auto;"
+>
+  <div
+    class="slider-container"
+    [style.transform]="'translateX(-' + currentIndex * 100 + '%)'"
+    [style.transition]="'transform 0.5s ease-in-out'"
+  >
+  @for(image of images; track $index){
+
+    <div class="slider-item">
+      <img [src]="image.src" [alt]="image.alt" [title]="image.title" />
+    </div>
+
+  }
+  
+  </div>
+
+  <!-- Navigation -->
+  <button
+    class="btn btn-prev position-absolute top-50 start-0 translate-middle-y"
+    (click)="previousSlide()"
+  >
+    &#10094;
+  </button>
+  <button
+    class="btn btn-next position-absolute top-50 end-0 translate-middle-y"
+    (click)="nextSlide()"
+  >
+    &#10095;
+  </button>
+</div>

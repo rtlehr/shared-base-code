@@ -1,0 +1,65 @@
+@import "../../../color-scheme.scss";
+
+ /* HEADER MENU */
+
+  /* Main navigation styles */
+  .navbar-nav {
+    // Ensure the items are spaced correctly
+    // You can customize spacing if needed with Bootstrap utilities or SASS variables
+  }
+  
+  .navbar-nav .nav-item {
+    position: relative;
+  }
+  
+  /* Link styles */
+  .navbar-nav .nav-item .nav-link {
+    color: $headertextcolor; // Bootstrap primary color
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+  
+    &:hover {
+      color: darken($primary, 10%); // Darkened primary color
+      text-decoration: underline;
+    }
+  
+    &.active {
+      color: $complement3; // Bootstrap secondary color
+      font-weight: bold;
+    }
+  }
+  
+  /* Dropdown styles */
+  .navbar-nav .nav-item.dropdown .dropdown-toggle {
+    &::after {
+      margin-left: 0.5rem;
+      content: '▼'; // Arrow indicator for dropdown
+      font-size: 0.8rem;
+    }
+  
+    &:hover {
+      color: darken($primary, 10%); // Darkened primary color
+    }
+  }
+  
+  /* Dropdown menu container */
+  .navbar-nav .nav-item.dropdown .dropdown-menu {
+    background-color: $gray-500; // Bootstrap light color
+    border: 1px solid $complement3; // Bootstrap secondary color
+    border-radius: 0.25rem;
+  
+    .dropdown-item {
+      color: $bodyTextColor; // Bootstrap body text color
+      padding: 0.5rem 1rem;
+  
+      &:hover {
+        background-color: lighten($complement3, 20%); // Lightened secondary color
+        color: $white; // White text on hover
+      }
+  
+      &.active {
+        background-color: $primary; // Bootstrap primary color
+        color: $white; // White text for active items
+      }
+    }
+  }

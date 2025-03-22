@@ -1,0 +1,35 @@
+<div class="container"> 
+  <div class="row">
+
+    @for(person of getPeople;track $index){
+
+      <div class="col-md-4">
+        <div class="business-card">
+          <div class="photo-container">
+            <img [src]="person.photo" alt="Profile Picture" class="profile-pic"> 
+          </div>
+          <div class="card-info">
+            <h2>{{ person.name }}</h2>
+            <p><strong>Business Phone:</strong> {{ person.businessPhone }}</p>
+            <p><strong>Cell:</strong> {{ person.cellPhone }}</p>
+            <p><strong>Email:</strong> <a [href]="'mailto:' + person.email">{{ person.email }}</a></p>
+            <div class="social-links">
+
+              @for(link of person.socialMedia; track $index){
+
+                <a [href]="link.url" target="_blank">
+                  <i [class]="'fab ' + link.icon"></i>
+                </a>
+
+              }
+
+            </div>
+          </div>
+          <p class="bio">{{ person.bio }}</p>
+        </div>
+      </div>
+
+    }
+
+  </div>
+</div>

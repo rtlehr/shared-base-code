@@ -1,0 +1,70 @@
+@import "../../../../color-scheme.scss";
+
+.sideMenuPage
+{
+  padding: 25px;
+}
+
+/* Sidebar container */
+.sidebar {
+  padding: 1rem;
+  min-height: 100vh; // Full-height sidebar
+}
+
+/* Navigation list */
+.sidebar .nav {
+  margin-top: 1rem; 
+}
+
+/* Navigation items */
+.sidebar .nav-item {
+  margin-bottom: 0.5rem;
+}
+
+/* Links */
+.sidebar .nav-item .nav-link {
+  color: $bodyTextColor; // Bootstrap body text color
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: $color1; // Light hover background
+    color: $complement3; // Bootstrap primary color
+    text-decoration: none;
+  }
+
+  &.active {
+    background-color: $complement3; // Bootstrap primary color
+    color: $white; // White text for active link
+    font-weight: bold;
+    text-decoration: none; // Prevent underline conflicts
+  }
+}
+
+
+// Sidebar Open State (Handled by Bootstrap’s offcanvas)
+.offcanvas-md {
+  @media (max-width: 767px) {
+    width: 250px;
+  }
+}
+
+// Menu Button for Small Screens
+.btn-primary {
+  margin: 1rem;
+  @media (min-width: 768px) {
+    display: none; // Hide on medium and larger screens
+  }
+}
+
+// Content Wrapper Adjustments
+.content-wrapper {
+  padding: 20px;
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+}

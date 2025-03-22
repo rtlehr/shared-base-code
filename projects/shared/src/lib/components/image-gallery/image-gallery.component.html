@@ -1,0 +1,19 @@
+<div [id]="divId" class="container my-5">
+  <div class="row">
+    @for(images of getImages; track $index) 
+    {
+      <div class="col-md-4 col-sm-6 mb-4"> 
+        <div class="card">
+          <div class="image-container">
+            <img [src]="images.src" alt="{{ images.title }}" class="card-img">
+          </div>
+          <div class="card-body text-center"> 
+            <h5 class="card-title">{{ images.title }}</h5>
+            <p class="card-text">{{ images.description }}</p>
+            <a href="{{ images.href }}" class="btn btn-primary" target="_blank">Learn More</a>
+          </div>
+        </div>
+      </div>  
+    } 
+  </div>
+</div>

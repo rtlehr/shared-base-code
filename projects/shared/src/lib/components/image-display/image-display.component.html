@@ -1,0 +1,29 @@
+<div [id]="divId" class="gallery">
+  @for(images of getImages; track images.id) 
+  {
+    @if(images.private == "false")
+    {
+      <div class="thumbnail" (click)="openModal(images)">
+        <img [src]="images.src" [alt]="images.title" />
+      </div>
+    }
+    @else
+    {
+      <div class="thumbnail private">
+        <img src="./assets/images/privateImage.jpg" alt="This is a private image" />
+      </div>
+    }
+  }
+</div>
+
+<!-- Modal -->
+<div class="modal" *ngIf="selectedImage" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <img [src]="selectedImage.largeSrc" [alt]="selectedImage.title" class="modal-image" />
+    <div class="modal-info">
+      <h3>{{ selectedImage.title }}</h3>
+      <p>{{ selectedImage.description }}</p>
+    </div>
+  </div>
+</div>

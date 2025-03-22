@@ -1,0 +1,41 @@
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .faq-questions h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .list-group-item a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .list-group-item a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+  
+  .faq-answers {
+    margin-top: 40px;
+  }
+  
+  .faq-answer {
+    margin-bottom: 20px;
+  }
+  
+  .faq-answer a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .faq-answer a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+  }
+  

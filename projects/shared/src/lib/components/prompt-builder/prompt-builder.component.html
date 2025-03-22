@@ -1,0 +1,130 @@
+<div class="container my-4">
+  <h2 class="text-center mb-4">AI Image Prompt Builder</h2>
+
+  <form #promptForm="ngForm" (ngSubmit)="generatePrompt()" novalidate>
+    <div class="row">
+      <!-- Subject -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Subject & Main Focus <span class="text-danger">*</span>
+          <small class="form-text text-muted">Clearly describe the primary subject (e.g., "A hidden ancient city.")</small>
+        </label>
+        <input type="text" class="form-control" [(ngModel)]="promptDetails.subject" name="subject" required />
+        <div *ngIf="promptForm.submitted && !promptDetails.subject" class="text-danger">This field is required.</div>
+      </div>
+
+      <!-- Detailed Description -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Detailed Description & Features <span class="text-danger">*</span>
+          <small class="form-text text-muted">Colors, textures, shapes, specific objects.</small>
+        </label>
+        <textarea class="form-control" [(ngModel)]="promptDetails.details" name="details" required></textarea>
+        <div *ngIf="promptForm.submitted && !promptDetails.details" class="text-danger">This field is required.</div>
+      </div>
+
+      <!-- Style -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Artistic Style or Inspiration <span class="text-danger">*</span></label>
+        <select class="form-select" [(ngModel)]="promptDetails.style" name="style" required>
+          <option value="">-- Select Artistic Style --</option>
+          <option *ngFor="let style of artisticStyles" [value]="style">{{ style }}</option>
+        </select>
+        <div *ngIf="promptForm.submitted && !promptDetails.style" class="text-danger">This field is required.</div>
+      </div>
+
+      <!-- Lighting -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Lighting & Mood <span class="text-danger">*</span></label>
+        <select class="form-select" [(ngModel)]="promptDetails.lighting" name="lighting" required>
+          <option value="">-- Select Lighting & Mood --</option>
+          <option *ngFor="let light of lightingMoods" [value]="light">{{ light }}</option>
+        </select>
+        <div *ngIf="promptForm.submitted && !promptDetails.lighting" class="text-danger">This field is required.</div>
+      </div>
+
+      <!-- Camera -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Camera Angle & Composition <span class="text-danger">*</span></label>
+        <select class="form-select" [(ngModel)]="promptDetails.camera" name="camera" required>
+          <option value="">-- Select Camera Angle --</option>
+          <option *ngFor="let angle of cameraAngles" [value]="angle">{{ angle }}</option>
+        </select>
+        <div *ngIf="promptForm.submitted && !promptDetails.camera" class="text-danger">This field is required.</div>
+      </div>
+
+      <!-- Environment -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Environment & Context <span class="text-danger">*</span></label>
+        <textarea class="form-control" [(ngModel)]="promptDetails.environment" name="environment" required></textarea>
+        <div *ngIf="promptForm.submitted && !promptDetails.environment" class="text-danger">This field is required.</div>
+      </div>
+
+      <!-- Medium -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Technical Medium or Rendering Style <span class="text-danger">*</span></label>
+        <select class="form-select" [(ngModel)]="promptDetails.medium" name="medium" required>
+          <option value="">-- Select a Technical Medium --</option>
+          <option *ngFor="let med of techMedium" [value]="med">{{ med }}</option>
+        </select>
+        <div *ngIf="promptForm.submitted && !promptDetails.medium" class="text-danger">This field is required.</div>
+      </div>
+
+      <!-- Quality -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Desired Quality & Resolution <span class="text-danger">*</span></label>
+        <select class="form-select" [(ngModel)]="promptDetails.quality" name="quality" required>
+          <option value="">-- Select Quality --</option>
+          <option value="Standard">Standard</option>
+          <option value="Highly detailed">Highly detailed</option>
+          <option value="Ultra-high definition (4K/8K)">Ultra-high definition (4K/8K)</option>
+          <option value="Cinematic">Cinematic</option>
+        </select>
+        <div *ngIf="promptForm.submitted && !promptDetails.quality" class="text-danger">This field is required.</div>
+      </div>
+
+      <!-- Realistic Body Descriptors -->
+    <div class="col-12 mb-3">
+      <label class="form-label">Optional: Realistic Body Descriptors</label>
+      <div class="form-text mb-2">Check one or more to promote realistic, non-idealized bodies in your prompt.</div>
+      
+      <div class="row">
+        <div class="col-md-6" *ngFor="let option of realismOptions">
+          <div class="form-check">
+            <input class="form-check-input"
+                  type="checkbox"
+                  [value]="option.value"
+                  [checked]="selectedRealism.includes(option.value)"
+                  (change)="onCheckboxChange($event)" />
+            <label class="form-check-label">{{ option.label }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+      <!-- Negative Keywords -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Negative Keywords (Optional)</label>
+        <textarea class="form-control" [(ngModel)]="promptDetails.negative" name="negative"></textarea>
+      </div>
+
+      <!-- Additional Notes -->
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Additional Notes (Optional)</label>
+        <textarea class="form-control" [(ngModel)]="promptDetails.additionalNotes" name="additionalNotes"></textarea>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+        {{ isLoading ? 'Generating...' : 'Generate Prompt' }}
+      </button>
+    </div>
+  </form>
+
+  <!-- Generated Prompt Output -->
+  <div class="mt-5" *ngIf="generatedPrompt">
+    <h4>Generated Prompt:</h4>
+    <div class="alert alert-light border rounded p-3">{{ generatedPrompt }}</div>
+    <button class="btn btn-success" (click)="copyPrompt()">Copy Prompt</button>
+  </div>
+</div>

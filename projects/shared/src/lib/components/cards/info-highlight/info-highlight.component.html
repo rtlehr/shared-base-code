@@ -1,0 +1,42 @@
+<div [id]="divId" class="image-slider">
+  
+  <div class="image-container" 
+       [style.width.px]="imageSize" 
+       [style.height.px]="imageSize"
+       *ngIf="images && images.length > 0 && images[currentIndex]">
+
+    <img [src]="images[currentIndex].imageUrl" 
+         class="main-image" 
+         alt="Displayed Image" 
+         [style.width.px]="imageSize" 
+         [style.height.px]="imageSize" />
+
+    @if(images[currentIndex].textBoxes && images[currentIndex].textBoxes.length){
+      <div class="overlay-text">
+        <p [style.font-size.rem]="getFontSize()">
+          {{ images[currentIndex].textBoxes[0].text }}
+        </p>  
+      </div>
+    } 
+
+  </div>
+
+  <div class="text-box-container" 
+       [style.height.px]="imageSize" 
+       [style.right.px]="-((imageSize / 4)*3)">
+
+    @for(box of images; track $index){
+
+      <div class="text-box"
+           [class.active]="$index === currentIndex"
+           (click)="changeImage($index)" 
+           [style.width.px]="imageSize"
+           [style.height.px]="imageSize / (images.length + 1)">
+        <p [style.font-size.rem]="getFontSize()">{{ box.title }}</p>
+      </div>
+
+    }
+    
+  </div>
+
+</div>

@@ -21,7 +21,7 @@ export * from './lib/services/permission.service';
 export * from './lib/services/route-info.service';
 export * from './lib/services/shared-data.service';
 
-
+export * from './lib/components/modal-window/modal-window.component';
 
 
 

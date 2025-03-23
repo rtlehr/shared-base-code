@@ -4,19 +4,12 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ModalWindowService {
+  private actionSource = new Subject<any>(); // ✅ Accepts windowInfo object
+  actionTriggered$ = this.actionSource.asObservable();
 
-    private actionSource = new Subject<void>();
-
-    actionTriggered$ = this.actionSource.asObservable();
-
-    openModalWindow(windowInfo: any) {
-
-      console.log("openModalWindow from Modal Service");
-
-      this.actionSource.next(windowInfo);
-
-    }
-
+  openModalWindow(windowInfo: any) {
+    console.log('--- ModalWindowService: Emitting windowInfo', windowInfo);
+    this.actionSource.next(windowInfo);
+  }
 }

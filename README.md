@@ -58,3 +58,44 @@ import { ModalWindowComponent } from '../shared/projects/shared/src/lib/componen
 export class AppComponent {}
 ```
 
+Make sure the component you're importing is standalone and declared with standalone: true.
+
+🧪 3. Use Shared Services
+
+```bash
+
+import { ModalWindowService } from '../shared/projects/shared/src/lib/services/modal-window.service';
+
+```
+
+🔄 4. Update the Shared Code in Your App
+When updates are made to the shared-base-code repo, pull them into your site:
+
+```bash
+git submodule update --remote --merge
+git add src/shared
+git commit -m "Update shared-base-code"
+git push
+```
+🧠 Tips
+
+All components in this repo should be standalone: true.
+
+Services should use @Injectable({ providedIn: 'root' }) so they work automatically.
+
+Paths may differ slightly based on where your app.component.ts is located.
+
+You can organize the shared library however you like (e.g. /components, /services, /models, etc.)
+
+✅ Recommended Project Structure
+
+```bash
+/src
+  /app
+    app.component.ts
+  /shared ← Git submodule (this repo)
+    /projects/shared/src/lib
+      /components
+      /services
+      /models
+```

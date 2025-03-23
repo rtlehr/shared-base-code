@@ -23,13 +23,17 @@ export class ModalWindowComponent implements AfterViewInit {
   isVisible = false;
 
   ngOnInit() {
+
+    console.log("ngOnInit from modal-window component");
+
     this.modalWindow.actionTriggered$.subscribe((windowInfo: any) => {
-      console.log("openModalWindow from modal-window component subscribe");
+      console.log("--- openModalWindow from modal-window component subscribe");
       this.fileToLoad = windowInfo.contentFile;
       this.divId = windowInfo.divId;
       this.modalTitle = windowInfo.title;
       this.openModalWindow();
     });
+    
   }
 
   ngAfterViewInit() {

@@ -31,3 +31,25 @@ In the root of your Angular project:
 ```bash
 git submodule add https://github.com/YOUR-USERNAME/shared-base-code.git src/shared
 
+This will create:
+
+/src
+  /app
+  /shared   ✅ ← points to this repo!
+
+📥 2. Import and Use a Shared Component
+Example: Using the ModalWindowComponent in your app.
+
+✅ In your app.component.ts (or any other standalone component):
+
+import { Component } from '@angular/core';
+import { ModalWindowComponent } from '../shared/projects/shared/src/lib/components/modal-window/modal-window.component';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [ModalWindowComponent],
+  template: `<app-modal-window></app-modal-window>`,
+})
+export class AppComponent {}
+
